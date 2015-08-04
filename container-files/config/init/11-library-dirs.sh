@@ -6,5 +6,5 @@
 set -e
 
 mkdir -p /data/conf/appdata
-chmod 644 /data/conf/appdata
+chmod 777 /data/conf/appdata
 chown -R www:www /data/conf/appdata
