@@ -1,5 +1,7 @@
 # Calibre Web docker image
 
+![screenshot](https://raw.githubusercontent.com/janeczku/docker-calibre-web/master/screenshot.png)
+
 This Dockerfile provides the [janeczku/calibre-web](https://registry.hub.docker.com/u/janeczku/calibre-web/) image based on CentOS 7, Supervisord, Gunicorn and Nginx reverse proxy.
 
 ## About Calibre Web
