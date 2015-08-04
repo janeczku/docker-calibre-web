@@ -18,7 +18,9 @@ The Calibre database can either be made available to the container by mounting a
 
 ### Using a Calibre database located on the host
 
-    docker run -d --name calibre-web -v /path/to/calibre_database:/calibre -p 8080:80 janeczku/calibre-web
+    docker run -d --name calibre-web \
+    -v /path/to/calibre_database:/calibre \
+    -p 8080:80 janeczku/calibre-web
 
 ### Using a Calibre database located in an existing volume
 In this example we are first launching the [Docker Dropbox](https://registry.hub.docker.com/u/thomfab/docker-dropbox/) image to sync the Calibre database from a Dropbox account to a volume on the host. Subsequently we can then mount this volume to the Calibre Web container. This allows our database to be  continually up to date. It is recommended to setup a distinct Dropbox account for this purpose as the container will download all data from the linked account.
@@ -40,7 +42,10 @@ You should see something like this:
 
 The dropbox files are stored in the `/dropbox/Dropbox` volume. When mounting this volume to the Calibre Web container, we can tell it about the location of the Calibre database by supplying the environmental variable `CALIBRE_PATH`. Supposing the Calibre database folder is named `calibre` and located in the root of the Dropbox account:
 
-	docker run -d --name calibre-web --volumes-from dropbox --env CALIBRE_PATH=/dropbox/Dropbox/calibre -p 8080:80 janeczku/calibre-web
+	docker run -d --name calibre-web \
+	--volumes-from dropbox \
+	--env CALIBRE_PATH=/dropbox/Dropbox/calibre \
+	-p 8080:80 janeczku/calibre-web
 
 ## Using the app
 
