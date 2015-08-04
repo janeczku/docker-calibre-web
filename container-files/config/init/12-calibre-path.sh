@@ -9,7 +9,7 @@ echo "Calibre DB folder set to $CALIBRE_PATH"
 if [ -f "$CALIBRE_PATH/metadata.db" ]
 then
 		f=$CALIBRE_PATH
-		while [[ $f != "/" ]]; do chmod +ox $f; f=$(dirname $f); done;
+		while [[ $f != "/" ]]; do chmod o+x $f; f=$(dirname $f); done;
         chmod 777 ${CALIBRE_PATH}/metadata.db
         echo "Made calibre metadata.db writable"
 fi
