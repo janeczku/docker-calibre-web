@@ -42,6 +42,10 @@ The dropbox files are stored in the `/dropbox/Dropbox` volume. When mounting thi
 
 	docker run -d --name calibre-web --volumes-from dropbox --env CALIBRE_PATH=/dropbox/Dropbox/calibre -p 8080:80 janeczku/calibre-web
 
+## Using the app
+
+Open the app in your browser. Login as user `admin` with the password `admin123`. Don't forget to change the default password.
+
 ## ENV variables
 
 **CALIBRE_PATH**  
