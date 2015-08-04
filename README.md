@@ -27,7 +27,7 @@ In this example we are first launching the [Docker Dropbox](https://registry.hub
 
 Launch the Docker dropbox container.
 
-    docker run -d --name dropbox gfjardim/dropbox
+    docker run -d --name dropbox --env STATUS=true gfjardim/dropbox
 
 Check the logs of the container to get URL to authenticate with your Dropbox account.
 
