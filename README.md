@@ -16,16 +16,16 @@ https://github.com/janeczku/calibre-web/
 
 The Calibre database can either be made available to the container by mounting a local folder to `/calibre` mount point or by mounting an existing volume from another container. The latter method comes in handy if one wants to sync the Calibre database from a NAS, Dropbox or similar share.
 
-### Using a Calibre database located on the host
+### Using a Calibre database folder located on the host
 
     docker run -d --name calibre-web \
-    -v /path/to/calibre_database:/calibre \
+    -v /path/to/calibre/database/folder:/calibre \
     -p 8080:80 janeczku/calibre-web
 
-### Using a Calibre database located in an existing volume
-In this example we are first launching the [Docker Dropbox](https://registry.hub.docker.com/u/janeczku/dropbox/) image to sync the Calibre database from a Dropbox account to a volume on the host. Subsequently we can then mount this volume to the Calibre Web container. That way the database is continually updated. It is recommended to use a distinct Dropbox account for this purpose as the container will download all data from the linked account by default (for excluding folder from sync see below)
+### Using a Calibre database folder located in an existing volume
+In this example we are first launching the [Docker Dropbox](https://registry.hub.docker.com/u/janeczku/dropbox/) image to sync the Calibre database from a Dropbox account to a volume on the host. Subsequently we can then mount this volume in the Calibre Web container, so that the ebook database is always up-to-date. It is recommended to use a distinct Dropbox account for this purpose as the container will download all data from the linked account by default (Alternatively you can set-up selective sync - see "manage exclusions" below)
 
-Launch the Docker dropbox container.
+Launch the Docker Dropbox container.
 
     docker run -d --restart=always --name=dropbox \
     -e DBOX_UID=80 \
@@ -48,7 +48,7 @@ To manage exclusions and check sync status do:
 
 	docker exec -t -i dropbox dropbox help
 
-The docker dropbox image stores the synced files in the `/dbox/Dropbox` volume. When mounting the exposed volumes to the Calibre Web container, we can tell it about the location of the Calibre database by supplying the environmental variable `CALIBRE_PATH`. Supposing the Calibre database folder is named `Calibre` and located in the root of the Dropbox account we do the following:
+The docker dropbox image stores the synced files in the `/dbox/Dropbox` volume. When mounting the exposed volumes to the Calibre Web container, we have to tell it about the location of the Calibre database by supplying it in the `CALIBRE_PATH` ENV variable. Supposing the Calibre database folder is named `Calibre` and located in the root of the Dropbox account we do the following:
 
 	docker run -d --name calibre-web \
 	--volumes-from dropbox \
