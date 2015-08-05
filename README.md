@@ -23,11 +23,14 @@ The Calibre database can either be made available to the container by mounting a
     -p 8080:80 janeczku/calibre-web
 
 ### Using a Calibre database located in an existing volume
-In this example we are first launching the [Docker Dropbox](https://registry.hub.docker.com/u/gfjardim/dropbox/) image to sync the Calibre database from a Dropbox account to a volume on the host. Subsequently we can then mount this volume to the Calibre Web container. That way the database is continually updated. It is recommended to use a distinct Dropbox account for this purpose as the container will download all data from the linked account.
+In this example we are first launching the [Docker Dropbox](https://registry.hub.docker.com/u/janeczku/dropbox/) image to sync the Calibre database from a Dropbox account to a volume on the host. Subsequently we can then mount this volume to the Calibre Web container. That way the database is continually updated. It is recommended to use a distinct Dropbox account for this purpose as the container will download all data from the linked account by default (for excluding folder from sync see below)
 
 Launch the Docker dropbox container.
 
-    docker run -d --name dropbox --env STATUS=true gfjardim/dropbox
+    docker run -d --restart=always --name=dropbox \
+    -e DBOX_UID=80 \
+    -e DBOX_GID=80 \
+    janeczku/dropbox
 
 Check the logs of the container to get URL to authenticate with your Dropbox account.
 
@@ -41,15 +44,15 @@ You should see something like this:
 
 > "This computer is now linked to Dropbox. Welcome xxxx"
 
-To check the current sync status do:
+To manage exclusions and check sync status do:
 
-	docker exec dropbox /usr/bin/dropbox_status
+	docker exec -t -i dropbox dropbox help
 
-The dropbox image stores the synced files in the `/home/Dropbox` volume. When mounting the exposed volumes to the Calibre Web container, we can tell it about the location of the Calibre database by supplying the environmental variable `CALIBRE_PATH`. Supposing the Calibre database folder is named `Calibre` and located in the root of the Dropbox account we do the following:
+The docker dropbox image stores the synced files in the `/dbox/Dropbox` volume. When mounting the exposed volumes to the Calibre Web container, we can tell it about the location of the Calibre database by supplying the environmental variable `CALIBRE_PATH`. Supposing the Calibre database folder is named `Calibre` and located in the root of the Dropbox account we do the following:
 
 	docker run -d --name calibre-web \
 	--volumes-from dropbox \
-	--env CALIBRE_PATH=/home/Dropbox/Calibre \
+	--env CALIBRE_PATH=/dbox/Dropbox/Calibre \
 	-p 8080:80 janeczku/calibre-web
 
 ## Using the app
