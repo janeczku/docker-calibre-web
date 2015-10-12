@@ -57,7 +57,8 @@ The docker dropbox image stores the synced files in the `/dbox/Dropbox` volume. 
 
 ## Using the app
 
-Open the app in your browser. Login as user `admin` with the password `admin123`. Don't forget to change the default password.
+Open the app in your browser and login as user `admin` with the password `admin123`. Don't forget to change the default password.     
+To access the OPDS catalog feed, point your browser to `http://EXAMPLE.TLD/feed`.
 
 ## ENV variables
 
