@@ -14,3 +14,4 @@ RUN \
   chmod 644 /opt/app/config.ini
 
 ENV CALIBRE_PATH=/calibre
+ENV PUBLIC_USER_REG=0

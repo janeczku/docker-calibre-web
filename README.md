@@ -58,10 +58,14 @@ The docker dropbox image stores the synced files in the `/dbox/Dropbox` volume. 
 ## Using the app
 
 Point your browser to `http://HOSTNAME:8080`  and login as user `admin` with the password `admin123`. Don't forget to change the default password.     
-To access the OPDS catalog feed, point your browser to `http://HOSTNAME:8080/feed`.
+To access the OPDS catalog feed, point your Ebook Reader to `http://HOSTNAME:8080/feed`. To download books over OPDS, your reader has to support HTTP-Basic authentication.
 
 ## ENV variables
 
 **CALIBRE_PATH**  
 Default: `CALIBRE_PATH=/calibre`  
 Configure the path where the Calibre database is located. This is only needed when using an existing volume from another container.
+
+**PUBLIC_USER_REG**  
+Default: `PUBLIC_USER_REG=0`  
+If this is set to '1' unauthorized visitors can register and create user accounts.
