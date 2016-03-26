@@ -69,3 +69,11 @@ Configure the path where the Calibre database is located. This is only needed wh
 **PUBLIC_USER_REG**  
 Default: `PUBLIC_USER_REG=0`  
 If this is set to '1' unauthorized visitors can register and create user accounts.
+
+**SSL_CERT_NAME**  
+Default: ``  
+To use a custom SSL certificate copy or mount the crt file to /etc/nginx/ssl and set this environment variable to the cert's filename, e.g. "example.com.crt".
+
+**SSL_KEY_NAME**  
+Default: ``  
+To use a custom SSL certificate copy or mount the private key file to /etc/nginx/ssl and set this environment variable to the key's filename, e.g. "example.com.key".
