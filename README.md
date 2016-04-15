@@ -42,7 +42,7 @@ Copy and paste the URL in a browser and login to your Dropbox account to associa
 
 You should see something like this:
 
-> "This computer is now linked to Dropbox. Welcome xxxx"
+	"This computer is now linked to Dropbox. Welcome xxxx"
 
 To manage exclusions and check sync status do:
 
