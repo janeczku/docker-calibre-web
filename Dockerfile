@@ -22,10 +22,11 @@ ADD https://github.com/janeczku/calibre-web/archive/master.tar.gz /tmp/calibre-c
 RUN \
   # Fix locale
   localedef -c -i en_US -f UTF-8 en_US.UTF-8 && \
+  # Install calibre-web
   mkdir -p /opt/app && \
   tar zxf /tmp/calibre-cps.tar.gz -C /opt/app --strip-components=1 && \
   rm /tmp/calibre-cps.tar.gz && \
   chown -R www:www /opt/app && \
   chmod 644 /opt/app/config.ini
 
-ENV CALIBRE_PATH=/calibre PUBLIC_USER_REG=0 LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LANGUAGE=en_US:en
+ENV CALIBRE_PATH=/calibre PUBLIC_USER_REG=0 ENABLE_UPLOADING=0 LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LANGUAGE=en_US:en

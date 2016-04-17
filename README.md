@@ -70,6 +70,10 @@ Configure the path where the Calibre database is located. This is only needed wh
 Default: `PUBLIC_USER_REG=0`  
 If this is set to '1' unauthorized visitors can register and create user accounts.
 
+**ENABLE_UPLOADING**  
+Default: `ENABLE_UPLOADING=0`  
+Set to '1' to enable PDF upload feature.
+
 **SSL_CERT_NAME**  
 Default: ``  
 To use a custom SSL certificate copy or mount the crt file to /etc/nginx/ssl and set this environment variable to the cert's filename, e.g. "example.com.crt".
