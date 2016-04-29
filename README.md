@@ -74,6 +74,10 @@ If this is set to '1' unauthorized visitors can register and create user account
 Default: `ENABLE_UPLOADING=0`  
 Set to '1' to enable PDF upload feature.
 
+**ANON_BROWSE**  
+Default: `ANON_BROWSE=0`  
+Set to '1' to enable not logged in users to browse the catalog.
+
 **SSL_CERT_NAME**  
 Default: ``  
 To use a custom SSL certificate copy or mount the crt file to /etc/nginx/ssl and set this environment variable to the cert's filename, e.g. "example.com.crt".
