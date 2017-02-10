@@ -70,9 +70,11 @@ To access the OPDS catalog feed, point your Ebook Reader to `http://hostname:808
 ## ENV variables
 
 **SSL_CERT_NAME**  
-Default: ``  
+Default: ` `    
+
 To use a custom SSL certificate copy or mount the crt file to /etc/nginx/ssl and set this environment variable to the cert's filename, e.g. "example.com.crt". Don't forget modify your `docker run` command to map port 443 from the container to the host.
 
 **SSL_KEY_NAME**  
-Default: ``  
+Default: ` `    
+
 To use a custom SSL certificate copy or mount the private key file to /etc/nginx/ssl and set this environment variable to the key's filename, e.g. "example.com.key".
