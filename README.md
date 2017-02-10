@@ -14,7 +14,7 @@ https://github.com/janeczku/calibre-web/
 
 ## Getting Started
 
-The Calibre database can either be made available to the container by mounting a local folder to `/calibre` mount point or by mounting an existing volume from another container. The latter method comes in handy if one wants to sync the Calibre database from a NAS, Dropbox or similar share.
+You can make your Calibre database available to the container either by mounting the host folder to `/calibre` or by mounting an existing volume from another container. The latter method comes in handy if you want to sync the Calibre database from a NAS, Dropbox or similar share.
 
 ### Using a Calibre database folder located on the host
 
@@ -55,32 +55,23 @@ The docker dropbox image stores the synced files in the `/dbox/Dropbox` volume. 
 	--env CALIBRE_PATH=/dbox/Dropbox/Calibre \
 	-p 8080:80 janeczku/calibre-web
 
-## Using the app
+## Using the app - Quick start
 
-Point your browser to `http://HOSTNAME:8080`  and login as user `admin` with the password `admin123`. Don't forget to change the default password.     
-To access the OPDS catalog feed, point your Ebook Reader to `http://HOSTNAME:8080/feed`. To download books over OPDS, your reader has to support HTTP-Basic authentication.
+1. Point your browser to `http://hostname:8080` (or whatever host port you mapped the container to)
+2. Set `Location of Calibre database` to the path of the folder where you mounted your Calibre folder in the container (e.g. /calibre)
+3. Hit "submit" then "login".  
+
+**Default admin login:**    
+*Username:* admin   
+*Password:* admin123
+       
+To access the OPDS catalog feed, point your Ebook Reader to `http://hostname:8080/opds`.
 
 ## ENV variables
 
-**CALIBRE_PATH**  
-Default: `CALIBRE_PATH=/calibre`  
-Configure the path where the Calibre database is located. This is only needed when using an existing volume from another container.
-
-**PUBLIC_USER_REG**  
-Default: `PUBLIC_USER_REG=0`  
-If this is set to '1' unauthorized visitors can register and create user accounts.
-
-**ENABLE_UPLOADING**  
-Default: `ENABLE_UPLOADING=0`  
-Set to '1' to enable PDF upload feature.
-
-**ANON_BROWSE**  
-Default: `ANON_BROWSE=0`  
-Set to '1' to enable not logged in users to browse the catalog.
-
 **SSL_CERT_NAME**  
 Default: ``  
-To use a custom SSL certificate copy or mount the crt file to /etc/nginx/ssl and set this environment variable to the cert's filename, e.g. "example.com.crt".
+To use a custom SSL certificate copy or mount the crt file to /etc/nginx/ssl and set this environment variable to the cert's filename, e.g. "example.com.crt". Don't forget modify your `docker run` command to map port 443 from the container to the host.
 
 **SSL_KEY_NAME**  
 Default: ``  

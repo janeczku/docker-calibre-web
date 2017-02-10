@@ -1,7 +1,6 @@
 import os
-import multiprocessing
 
-workers = 2
+workers = 1
 bind = "127.0.0.1:8083"
-user = 'www'
+user = 'root'
 loglevel = 'info'
