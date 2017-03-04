@@ -13,7 +13,7 @@ RUN \
   yum clean all && rm -rf /tmp/yum*
 
 ADD container-files /
-ADD vendor/kindlegen /opt/app/kindlegen
+ADD vendor/kindlegen /opt/app/vendor/kindlegen
 ADD https://github.com/janeczku/calibre-web/archive/master.tar.gz /tmp/calibre-cps.tar.gz
 
 RUN \
