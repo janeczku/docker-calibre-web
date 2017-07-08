@@ -48,12 +48,13 @@ To manage exclusions and check sync status do:
 
 	docker exec -t -i dropbox dropbox help
 
-The docker dropbox image stores the synced files in the `/dbox/Dropbox` volume. When mounting the exposed volumes to the Calibre Web container, we have to tell it about the location of the Calibre database by supplying it in the `CALIBRE_PATH` ENV variable. Supposing the Calibre database folder is named `Calibre` and located in the root of the Dropbox account we do the following:
+Then start the calibre-web container mounting the volumes from the dropbox container:
 
 	docker run -d --name calibre-web \
 	--volumes-from dropbox \
-	--env CALIBRE_PATH=/dbox/Dropbox/Calibre \
 	-p 8080:80 janeczku/calibre-web
+
+The docker dropbox container stores synced files in the `/dbox/Dropbox` volume. Given that the Calibre database folder is named `Calibre` and located in the root of the Dropbox account you would then have to configure the Calibre database location as `/dbox/Dropbox/Calibre` (see below).
 
 ## Using the app - Quick start
 
@@ -78,3 +79,12 @@ To use a custom SSL certificate copy or mount the crt file to /etc/nginx/ssl and
 Default: ` `    
 
 To use a custom SSL certificate copy or mount the private key file to /etc/nginx/ssl and set this environment variable to the key's filename, e.g. "example.com.key".
+
+**CALIBRE_DBPATH**  
+Default: ``    
+
+Custom folder for the application database (note: this is not the Calibre ebook database). You may use this persist application data in a volume.
+
+## Running behind additional reverse proxy
+
+Configure your proxy to pass it's public hostname in the `X-Forwarded-Host` header.

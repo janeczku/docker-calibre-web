@@ -14,15 +14,16 @@ RUN \
 
 ADD container-files /
 ADD vendor/kindlegen /opt/app/vendor/kindlegen
-ADD https://github.com/janeczku/calibre-web/archive/master.tar.gz /tmp/calibre-cps.tar.gz
 
 RUN \
   # Fix locale
   localedef -c -i en_US -f UTF-8 en_US.UTF-8 && \
   # Install calibre-web
   mkdir -p /opt/app && \
+  curl -L -o /tmp/calibre-cps.tar.gz https://github.com/janeczku/calibre-web/archive/master.tar.gz && \
   tar zxf /tmp/calibre-cps.tar.gz -C /opt/app --strip-components=1 && \
   rm /tmp/calibre-cps.tar.gz && \
+  easy_install `cat /opt/app/requirements.txt` && \
   chown -R www:www /opt/app
 
 ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LANGUAGE=en_US:en
