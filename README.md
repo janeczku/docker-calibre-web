@@ -1,5 +1,7 @@
 # Calibre Web docker image
 
+**This image has been deprecated. Please see [here](https://github.com/janeczku/calibre-web#docker-image) for links to alternative Docker images for Calibre Web.**
+
 ![screenshot](https://raw.githubusercontent.com/janeczku/docker-calibre-web/master/screenshot.png)
 
 This Dockerfile provides the [janeczku/calibre-web](https://registry.hub.docker.com/u/janeczku/calibre-web/) image based on CentOS 7, Supervisord, Gunicorn and Nginx reverse proxy.
